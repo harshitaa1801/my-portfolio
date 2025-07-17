@@ -1,15 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+    <!-- Basic Meta Tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harshita Jain - Backend Developer</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Harshita Jain - Backend Developer | Python Django Expert | harshitajn.tech</title>
+    <meta name="description" content="Harshita Jain is a Backend Developer specializing in Python, Django, and scalable systems. Built high-performance applications serving 50,000+ users. Available for hire.">
+    <meta name="keywords" content="Backend Developer, Python Developer, Django Expert, Software Engineer, API Development, Cloud Architecture, Harshita Jain">
+    <meta name="author" content="Harshita Jain">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="Harshita Jain - Backend Developer | Python Django Expert">
+    <meta property="og:description" content="Backend Developer specializing in Python, Django, and scalable systems. Built high-performance applications serving 50,000+ users.">
+    <meta property="og:image" content="https://harshitajn.tech/og-image.jpg">
+    <meta property="og:url" content="https://harshitajn.tech">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Harshita Jain Portfolio">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Harshita Jain - Backend Developer | Python Django Expert">
+    <meta name="twitter:description" content="Backend Developer specializing in Python, Django, and scalable systems. Built high-performance applications serving 50,000+ users.">
+    <meta name="twitter:image" content="https://harshitajn.tech/og-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://harshitajn.tech">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- EmailJS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet">
+    
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Harshita Jain",
+        "jobTitle": "Backend Developer",
+        "description": "Backend Developer specializing in Python, Django, and scalable systems",
+        "url": "https://harshitajn.tech",
+        "email": "harshitajn18@gmail.com",
+        "telephone": "+91-8864865605",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Noida",
+            "addressRegion": "Delhi NCR",
+            "addressCountry": "India"
+        },
+        "sameAs": [
+            "https://linkedin.com/in/harshitajn",
+            "https://github.com/harshitaa1801"
+        ],
+        "knowsAbout": [
+            "Python",
+            "Django",
+            "PostgreSQL",
+            "Redis",
+            "AWS",
+            "GCP",
+            "Backend Development",
+            "API Development",
+            "Cloud Architecture"
+        ],
+        "alumniOf": {
+            "@type": "Organization",
+            "name": "Chandigarh University"
+        },
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Babynama",
+            "description": "Healthcare Technology Company"
+        }
+    }
+    </script>
+    
     <script>
         tailwind.config = {
             theme: {
@@ -31,8 +113,8 @@
 </head>
 
 <body class="bg-gray-50 text-gray-900 font-sans">
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-sm border-b border-gray-200 z-50">
+    <!-- Navigation with improved semantic HTML -->
+    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-sm border-b border-gray-200 z-50" role="navigation" aria-label="Main navigation">
         <div class="max-w-4xl mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <div class="font-mono font-semibold text-lg">
@@ -46,10 +128,9 @@
                     <a href="#projects" class="text-gray-600 hover:text-accent transition-colors">Projects</a>
                     <a href="#contact" class="text-gray-600 hover:text-accent transition-colors">Contact</a>
                 </div>
-                <button id="mobile-menu-btn" class="md:hidden p-2">
+                <button id="mobile-menu-btn" class="md:hidden p-2" aria-label="Toggle mobile menu" aria-expanded="false">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </button>
             </div>
@@ -67,78 +148,76 @@
         </div>
     </nav>
 
-    <!-- Home Section -->
-    <section id="home" class="pt-24 pb-16 px-6">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center">
-                <div class="mb-8">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-4">
-                        Hi, I'm <span class="text-accent">Harshita</span>
-                    </h1>
-                    <div class="font-mono text-lg md:text-xl text-gray-600 mb-6">
-                        <span class="text-accent">const</span> role = <span class="text-green-600">"Software Development
-                            Engineer"</span>;
+    <!-- Main content with semantic HTML -->
+    <main>
+        <!-- Home Section with improved semantic structure -->
+        <section id="home" class="pt-24 pb-16 px-6" role="banner">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center">
+                    <div class="mb-8">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                            Hi, I'm <span class="text-accent">Harshita Jain</span>
+                        </h1>
+                        <div class="font-mono text-lg md:text-xl text-gray-600 mb-6">
+                            <span class="text-accent">const</span> role = <span class="text-green-600">"Software Development Engineer"</span>;
+                        </div>
+                        <p class="text-xl md:text-2xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
+                            I architect and optimize high-performance backend systems that power applications for 50,000+ users globally.
+                        </p>
                     </div>
-                    <p class="text-xl md:text-2xl text-gray-700 max-w-2xl mx-auto leading-relaxed">
-                        I architect and optimize high-performance backend systems that power applications for 50,000+
-                        users globally.
-                    </p>
-                </div>
 
-                <!-- Stats Section -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-                    <div class="text-center">
-                        <div class="text-2xl md:text-3xl font-bold text-accent">50K+</div>
-                        <div class="text-sm text-gray-600">Users Served</div>
+                    <!-- Stats Section with better accessibility -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8" role="region" aria-label="Key achievements">
+                        <div class="text-center">
+                            <div class="text-2xl md:text-3xl font-bold text-accent" aria-label="50,000 plus users served">50K+</div>
+                            <div class="text-sm text-gray-600">Users Served</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl md:text-3xl font-bold text-accent" aria-label="62 percent performance boost">62%</div>
+                            <div class="text-sm text-gray-600">Performance Boost</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl md:text-3xl font-bold text-accent" aria-label="54 percent engagement increase">54%</div>
+                            <div class="text-sm text-gray-600">Engagement Increase</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl md:text-3xl font-bold text-accent" aria-label="33 percent app downloads increase">33%</div>
+                            <div class="text-sm text-gray-600">App Downloads</div>
+                        </div>
                     </div>
-                    <div class="text-center">
-                        <div class="text-2xl md:text-3xl font-bold text-accent">62%</div>
-                        <div class="text-sm text-gray-600">Performance Boost</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-2xl md:text-3xl font-bold text-accent">54%</div>
-                        <div class="text-sm text-gray-600">Engagement Increase</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-2xl md:text-3xl font-bold text-accent">33%</div>
-                        <div class="text-sm text-gray-600">App Downloads</div>
-                    </div>
-                </div>
 
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="#projects"
-                        class="bg-accent text-white px-8 py-3 rounded-lg hover:bg-accent-light transition-colors font-medium">
-                        View My Work
-                    </a>
-                    <a href="#contact"
-                        class="border border-accent text-accent px-8 py-3 rounded-lg hover:bg-accent hover:text-white transition-colors font-medium">
-                        Get In Touch
-                    </a>
-                    <a href="https://drive.google.com/file/d/1tve6zNmmYlSbl32qWO31bJRFPSw9TBuQ/view?usp=sharing"
-                        target="_blank"
-                        class="bg-gray-800 text-white px-8 py-3 rounded-lg hover:bg-gray-700 transition-colors font-medium">
-                        View Resume
-                    </a>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        <a href="#projects" class="bg-accent text-white px-8 py-3 rounded-lg hover:bg-accent-light transition-colors font-medium" aria-label="View my development projects">
+                            View My Work
+                        </a>
+                        <a href="#contact" class="border border-accent text-accent px-8 py-3 rounded-lg hover:bg-accent hover:text-white transition-colors font-medium" aria-label="Contact me for opportunities">
+                            Get In Touch
+                        </a>
+                        <a href="https://drive.google.com/file/d/1tve6zNmmYlSbl32qWO31bJRFPSw9TBuQ/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="bg-gray-800 text-white px-8 py-3 rounded-lg hover:bg-gray-700 transition-colors font-medium" aria-label="Download my resume PDF">
+                            View Resume
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 px-6 bg-white">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center">
-                <span class="font-mono text-accent">//</span> About Me
-            </h2>
-            <div class="grid lg:grid-cols-3 gap-12 mb-12">
-                <div class="lg:col-span-2">
-                    <h3 class="text-2xl font-semibold mb-6 font-mono">Background & Expertise</h3>
-                    <div class="space-y-6 text-gray-700 leading-relaxed">
-                        <p class="text-lg">
-                            I'm a Backend Developer passionate about building scalable systems with Python and Django.
-                            I focus on delivering robust, cloud-native APIs and backend services.
-                        </p>
-                        <p>
+        <!-- About Section -->
+        
+        <section id="about" class="py-20 px-6 bg-white" role="region" aria-labelledby="about-heading">
+            <div class="max-w-6xl mx-auto">
+                <h2 id="about-heading" class="text-3xl md:text-4xl font-bold mb-16 text-center">
+                    <span class="font-mono text-accent">//</span> About Me
+                </h2>
+                <!-- Your existing about content with better semantic structure -->
+                <div class="grid lg:grid-cols-3 gap-12 mb-12">
+                    <article class="lg:col-span-2">
+                        <h3 class="text-2xl font-semibold mb-6 font-mono">Background & Expertise</h3>
+                        <div class="space-y-6 text-gray-700 leading-relaxed">
+                            <p class="text-lg">
+                                I'm a Backend Developer passionate about building scalable systems with Python and Django.
+                                I focus on delivering robust, cloud-native APIs and backend services.
+                            </p>
+                            <p>
                             At Babynama, I lead development of high-availability healthcare systems using Django,
                             Celery, Redis, and cloud platforms like AWS & GCP. My work combines AI, DevOps, and
                             performance engineering.
@@ -183,8 +262,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div>
+                    </article>
+                    <div>
                     <h3 class="text-xl font-semibold mb-6 font-mono">Technical Skills</h3>
                     <div class="space-y-6">
                         <div>
@@ -241,9 +320,9 @@
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
     <!-- Achievements Section -->
     <section id="achievements" class="py-16 px-6 bg-gray-50">
@@ -695,8 +774,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
     <!-- Personal Projects Section -->
     <section id="projects" class="py-16 px-6 bg-gray-50">
