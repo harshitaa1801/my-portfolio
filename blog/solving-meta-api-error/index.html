@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How I Fixed the Facebook Login redirect_uri Mismatch Error - Harshita Jain</title>
+    
+    <!-- Added comprehensive SEO meta tags -->
+    <meta name="description" content="Learn how to fix the Facebook Login redirect_uri mismatch error when integrating Facebook Business Login. A complete guide with code examples and debugging tips.">
+    <meta name="keywords" content="Facebook API, OAuth, redirect_uri error, Instagram API, JavaScript, Facebook Login, API integration, debugging">
+    <meta name="author" content="Harshita Jain">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://harshitajn.tech/blog/solving-meta-api-error/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://harshitajn.tech/blog/solving-meta-api-error/">
+    <meta property="og:title" content="How I Fixed the Facebook Login redirect_uri Mismatch Error">
+    <meta property="og:description" content="Learn how to fix the Facebook Login redirect_uri mismatch error when integrating Facebook Business Login. A complete guide with code examples and debugging tips.">
+    <meta property="og:image" content="https://harshitajn.tech/images/facebook-api-error-fix.jpg">
+    <meta property="og:site_name" content="Harshita Jain - Developer Blog">
+    <meta property="article:author" content="Harshita Jain">
+    <meta property="article:published_time" content="2025-01-09T00:00:00Z">
+    <meta property="article:modified_time" content="2025-01-09T00:00:00Z">
+    <meta property="article:section" content="API Integration">
+    <meta property="article:tag" content="Facebook API">
+    <meta property="article:tag" content="OAuth">
+    <meta property="article:tag" content="JavaScript">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://harshitajn.tech/blog/solving-meta-api-error/">
+    <meta name="twitter:title" content="How I Fixed the Facebook Login redirect_uri Mismatch Error">
+    <meta name="twitter:description" content="Learn how to fix the Facebook Login redirect_uri mismatch error when integrating Facebook Business Login. A complete guide with code examples and debugging tips.">
+    <meta name="twitter:image" content="https://harshitajn.tech/images/facebook-api-error-fix.jpg">
+    <meta name="twitter:creator" content="@harshitajain">
+    
+    <!-- Structured Data JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "How I Fixed the Facebook Login redirect_uri Mismatch Error",
+        "description": "Learn how to fix the Facebook Login redirect_uri mismatch error when integrating Facebook Business Login. A complete guide with code examples and debugging tips.",
+        "image": "https://harshitajn.tech/images/facebook-api-error-fix.jpg",
+        "author": {
+            "@type": "Person",
+            "name": "Harshita Jain",
+            "url": "https://harshitajn.tech"
+            "sameAs": [
+                "https://github.com/harshitaa1801",
+                "https://www.linkedin.com/in/harshitajn/"
+            ]            
+        },
+        "publisher": {
+            "@type": "Person",
+            "name": "Harshita Jain",
+            "url": "https://harshitajn.tech"
+        },
+        "datePublished": "2025-01-09T00:00:00Z",
+        "dateModified": "2025-01-09T00:00:00Z",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://harshitajn.tech/blog/solving-meta-api-error/"
+        },
+        "keywords": ["Facebook API", "OAuth", "redirect_uri error", "Instagram API", "JavaScript", "Facebook Login", "API integration", "debugging"],
+        "articleSection": "API Integration",
+        "wordCount": 1200,
+        "timeRequired": "PT8M"
+    }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'accent': '#6366f1',
+                        'accent-light': '#818cf8'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .prose h2 { 
+            font-size: 1.5rem; 
+            font-weight: 700; 
+            margin-top: 2rem; 
+            margin-bottom: 1rem; 
+            color: #111827; 
+        }
+        .prose h3 { 
+            font-size: 1.25rem; 
+            font-weight: 600; 
+            margin-top: 1.5rem; 
+            margin-bottom: 0.75rem; 
+            color: #1f2937; 
+        }
+        .prose p { 
+            margin-bottom: 1rem; 
+            line-height: 1.625; 
+            color: #374151; 
+        }
+        .prose ul { 
+            margin-bottom: 1rem; 
+            margin-left: 1.5rem; 
+            list-style-type: disc;
+        }
+        .prose li { 
+            color: #374151; 
+            margin-bottom: 0.5rem;
+        }
+        .prose code { 
+            background-color: #f3f4f6; 
+            padding: 0.25rem 0.5rem; 
+            border-radius: 0.25rem; 
+            font-size: 0.875rem; 
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace; 
+            color: #6366f1; 
+        }
+        .prose pre { 
+            background-color: #111827; 
+            color: #f9fafb; 
+            padding: 1rem; 
+            border-radius: 0.5rem; 
+            overflow-x: auto; 
+            margin-bottom: 1rem;
+            max-width: 100%;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .prose pre code {
+            background-color: transparent;
+            color: #f9fafb;
+            padding: 0;
+        }
+        .prose blockquote { 
+            border-left: 4px solid #6366f1; 
+            padding-left: 1rem; 
+            font-style: italic; 
+            color: #4b5563; 
+            margin: 1rem 0; 
+        }
+        /* Added responsive container to prevent horizontal overflow */
+        .content-container {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/80 backdrop-blur-sm border-b border-gray-200 z-50">
+        <div class="max-w-4xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="font-mono font-semibold text-lg">
+                    <a href="/" class="hover:text-accent transition-colors">
+                        <span class="text-accent">&lt;</span>harshita<span class="text-accent">/&gt;</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="/" class="text-gray-600 hover:text-accent transition-colors">Home</a>
+                    <a href="/#about" class="text-gray-600 hover:text-accent transition-colors">About</a>
+                    <a href="/#projects" class="text-gray-600 hover:text-accent transition-colors">Projects</a>
+                    <!-- <a href="/blog/" class="text-accent font-medium">Blog</a> -->
+                    <a href="/#contact" class="text-gray-600 hover:text-accent transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <!-- Added content-container class to prevent horizontal overflow -->
+    <main class="pt-24 pb-16 px-6 content-container">
+        <div class="max-w-4xl mx-auto">
+            <!-- Back to Blog -->
+            <!-- <div class="mb-8">
+                <a href="/blog/" class="inline-flex items-center text-accent hover:text-accent-light transition-colors">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                    Back to Blog
+                </a>
+            </div> -->
+
+            <!-- Article Header -->
+            <header class="mb-12">
+                <!-- Added proper heading hierarchy for SEO -->
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 text-balance">
+                    How I Fixed the Facebook Login redirect_uri Mismatch Error
+                </h1>
+                <div class="flex items-center space-x-4 text-gray-600 mb-6">
+                    <time datetime="2025-01-09">January 9, 2025</time>
+                    <span>•</span>
+                    <span>8 min read</span>
+                    <span>•</span>
+                    <span class="text-accent">API Integration</span>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm">Facebook API</span>
+                    <span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm">OAuth</span>
+                    <span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm">JavaScript</span>
+                    <span class="bg-accent/10 text-accent px-3 py-1 rounded-full text-sm">Debugging</span>
+                </div>
+            </header>
+
+            <!-- Article Content -->
+            <article class="prose max-w-none">
+                <h2>The Problem: It All Started with Missing Instagram Media</h2>
+                <p>I was in the middle of developing a SaaS application designed to help businesses manage their Instagram presence. The initial integration with the Instagram Graph API seemed straightforward, but I quickly hit a snag. While fetching media for our users, I noticed that certain posts were consistently missing from the API response.</p>
+                
+                <p>After some digging, the culprits were usually posts with copyrighted music or collaborative posts made with another creator. It became clear that the standard Instagram Basic Display API, with its more limited permissions, wasn't going to cut it. To get the full, unfiltered access my application needed, I had to pivot to the more powerful Facebook Business Login.</p>
+                
+                <p>That's when I fell down the rabbit hole. 🐰</p>
+
+                <h2>The Wrong Turn: A Deceptively Simple SDK</h2>
+                <p>Naturally, I reached for the official Facebook JS SDK to handle the login flow on the frontend. The process is supposed to be simple: a user clicks "Login with Facebook," the SDK handles the popup, and it returns an authorization code that my backend can exchange for a permanent access token.</p>
+
+                <p>My frontend code looked something like this:</p>
+                <pre><code>FB.login(function(response) {
+    if (response.authResponse) {
+        const code = response.authResponse.code;
+        // Send code to backend
+        sendCodeToBackend(code);
+    }
+}, {
+        config_id: FACEBOOK_BUSINESS_CONFIG_ID,
+        response_type: 'code',
+        override_default_response_type: true
+});</code></pre>
+
+                <p>The SDK successfully returned a code. The next step was to send this code to my backend and make a server-to-server call to Meta's oauth/access_token endpoint.</p>
+
+                <p>My backend request looked like this:</p>
+                <pre><code>curl -X POST "https://graph.facebook.com/v23.0/oauth/access_token" \
+  -d "client_id=YOUR_APP_ID" \
+  -d "client_secret=YOUR_APP_SECRET" \
+  -d "redirect_uri=https://yourdomain.com/callback" \
+  -d "code=AUTHORIZATION_CODE"</code></pre>
+
+                <p>And that's when I hit the wall. Instead of getting the expected access token, my backend received this infuriatingly vague error:</p>
+                
+                <blockquote>
+                    "Error validating verification code. Please make sure your redirect_uri is identical to the one you used in the OAuth dialog request"
+                </blockquote>
+
+                <h2>The Investigation: Debugging the Black Box</h2>
+                <p>The redirect_uri mismatch is a classic OAuth 2.0 problem. My first thought was a simple typo. I checked my backend code, my Meta Developer Dashboard (App Settings → Basic → Site URL), and my Facebook Login settings (Facebook Login → Settings → Valid OAuth Redirect URIs). Everything matched perfectly.</p>
+
+                <p>I tried every possible variation I could think of:</p>
+                <ul>
+                    <li>With and without a trailing slash (/)</li>
+                    <li>http vs https</li>
+                    <li>Adding www and leaving it out</li>
+                </ul>
+
+                <p>Nothing worked. The SDK was acting like a black box, and it was clear I was missing a key piece of the puzzle.</p>
+
+                <h2>The "Aha!" Moment: Inspecting the Login Dialog</h2>
+                <p>Out of options, I did what we developers do best: I opened my browser's developer tools and decided to manually inspect the URL of the login popup window itself.</p>
+
+                <p>And there it was.</p>
+
+                <p>The URL looked something like this:</p>
+                <pre><code>https://www.facebook.com/v23.0/dialog/oauth?client_id=[...ETC...]&redirect_uri=https%3A%2F%2Fstatic.xx.fbcdn.net%2Frsrc.php%2F[...ETC...]&fallback_redirect_uri=https%3A%2F%2Fyour-actual-uri.com%2F</code></pre>
+
+                <p>The <code>redirect_uri</code> parameter in the URL was not the one I had configured. It was a generic, static URI owned by Facebook (static.xx.fbcdn.net). My actual, valid URI was tucked away in a completely different parameter called <code>fallback_redirect_uri</code>.</p>
+
+                <p>The JS SDK, in its attempt to be "helpful," was overriding my redirect_uri! The backend, however, was correctly validating against the redirect_uri parameter, causing the mismatch and the error.</p>
+
+                <h2>The Solution: Taking Manual Control with JavaScript</h2>
+                <p>Once I understood the problem, the solution was clear. I needed to bypass the SDK's "magic" and construct the OAuth URL manually, giving me full control over every parameter.</p>
+
+                <p>I ditched the <code>FB.login()</code> method and wrote a simple function to open the login dialog in a new window. This ensured that the redirect_uri I specified was the one that was actually used.</p>
+
+                <p>Here is the final JavaScript code that solved the entire issue:</p>
+                <pre><code>function loginWithFacebook() {
+    const clientId = 'YOUR_APP_ID';
+    const redirectUri = encodeURIComponent('https://yourdomain.com/callback');
+    const scope = encodeURIComponent('instagram_basic,pages_show_list');
+    const responseType = 'code';
+    const extras = JSON.stringify({
+      setup: {
+        channel: 'IG_API_ONBOARDING'
+      }
+    }); 
+
+    const authUrl = `https://www.facebook.com/v23.0/dialog/oauth?` +
+        `client_id=${clientId}&` +
+        `redirect_uri=${redirectUri}&` +
+        `scope=${scope}&` +
+        `response_type=${responseType}&` + 
+        `extras=${encodeURIComponent(extras)}`;
+    
+    window.location.href = authUrl;
+}</code></pre>
+
+                <p>With this manual approach, the redirect_uri sent in the initial dialog request was identical to the one my backend sent in the access token request.</p>
+
+                <p>And just like that... Hola! Login finally worked. 🚀</p>
+
+                <h2>Key Takeaways</h2>
+                <ul>
+                    <li><strong>Don't Trust the Magic:</strong> SDKs are powerful, but they can hide important details. When an integration fails, don't be afraid to look under the hood at the raw HTTP requests and URLs.</li>
+                    <li><strong>Inspect Everything:</strong> The browser's developer tools are your best friend. Inspecting the popup URL was the key to solving this entire problem.</li>
+                    <li><strong>Manual is Sometimes Better:</strong> For complex OAuth flows, building the request URL manually can give you the control and clarity that an SDK might obscure.</li>
+                </ul>
+
+                <h2>Appendix: Required Facebook Login Permissions</h2>
+                <p>For this flow to work and to get full access to an Instagram Business account's media, you will need to request the following permissions in your login flow:</p>
+                <ul>
+                    <li><code>instagram_basic</code></li>
+                    <li><code>instagram_manage_comments</code></li>
+                    <li><code>pages_show_list</code></li>
+                    <li><code>pages_read_engagement</code></li>
+                    <li><code>business_management</code></li>
+                </ul>
+            </article>
+
+            <!-- Article Footer -->
+            <footer class="mt-12 pt-8 border-t border-gray-200">
+                <div class="flex items-center justify-between">
+                    <div class="text-sm text-gray-600">
+                        Found this helpful? Share it with others who might be struggling with Facebook API integration.
+                    </div>
+                    <!-- <a href="/blog/" class="text-accent hover:text-accent-light transition-colors font-medium">
+                        ← Back to Blog
+                    </a> -->
+                </div>
+            </footer>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="font-mono text-lg mb-4">
+                <span class="text-accent">&lt;</span>harshita<span class="text-accent">/&gt;</span>
+            </div>
+            <p class="text-gray-400 font-mono text-sm">
+                Crafted with HTML, Tailwind CSS, and modern backend spirit ⚙️
+            </p>
+            <p class="text-gray-500 text-sm mt-2">
+                © 2025 Harshita Jain. All rights reserved.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
