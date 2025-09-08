@@ -46,7 +46,7 @@
         "author": {
             "@type": "Person",
             "name": "Harshita Jain",
-            "url": "https://harshitajn.tech"
+            "url": "https://harshitajn.tech",
             "sameAs": [
                 "https://github.com/harshitaa1801",
                 "https://www.linkedin.com/in/harshitajn/"
@@ -148,6 +148,32 @@
             max-width: 100%;
             overflow-x: hidden;
         }
+        /* Custom styling for error boxes */
+        .error-box {
+            background-color: rgb(235, 214, 214); /* Light red background */
+            border-left: 4px solid #ef4444; /* Red left border */
+            padding: 1rem 1.5rem; /* More padding */
+            margin: 1.5rem 0; /* Clearer margin */
+            border-radius: 0.25rem; /* Slightly rounded corners */
+            color: #b91c1c; /* Darker red text for contrast */
+            font-size: 0.95rem; /* Slightly larger text */
+            font-style: normal; /* Override italic */
+        }
+
+        /* Ensure code inside error box has appropriate styling */
+        .error-box pre {
+            background-color: transparent; /* No black background inside the error box */
+            color: #b91c1c; /* Use the error box text color */
+            padding: 0;
+            margin: 0;
+            border-radius: 0;
+        }
+
+        .error-box pre code {
+            color: #b91c1c; /* Match text color */
+            background-color: transparent;
+            padding: 0;
+        }        
     </style>
 </head>
 <body class="bg-gray-50">
@@ -211,7 +237,7 @@
                 <h2>The Problem: It All Started with Missing Instagram Media</h2>
                 <p>I was in the middle of developing a SaaS application designed to help businesses manage their Instagram presence. The initial integration with the Instagram Graph API seemed straightforward, but I quickly hit a snag. While fetching media for our users, I noticed that certain posts were consistently missing from the API response.</p>
                 
-                <p>After some digging, the culprits were usually posts with copyrighted music or collaborative posts made with another creator. It became clear that the standard Instagram Basic Display API, with its more limited permissions, wasn't going to cut it. To get the full, unfiltered access my application needed, I had to pivot to the more powerful Facebook Business Login.</p>
+                <p>After some digging, the culprits were usually posts with copyrighted music or collaborative posts made with another creator. It became clear that the standard Instagram Basic Display API, with its more limited permissions, wasn't going to cut it. To get the full, unfiltered access my application needed, I had to pivot to the more powerful <strong>Facebook Business Login</strong>.</p>
                 
                 <p>That's when I fell down the rabbit hole. 🐰</p>
 
@@ -242,8 +268,15 @@
 
                 <p>And that's when I hit the wall. Instead of getting the expected access token, my backend received this infuriatingly vague error:</p>
                 
-                <blockquote>
-                    "Error validating verification code. Please make sure your redirect_uri is identical to the one you used in the OAuth dialog request"
+                <blockquote class="error-box">
+                    <pre><code>{
+"error": {
+    "message": "Error validating verification code. Please make sure your redirect_uri is identical to the one you used in the OAuth dialog request",
+    "type": "OAuthException",
+    "code": 100,
+    "fbtrace_id": "A_EXAMPLE_TRACE_ID"
+    }
+}</code></pre>
                 </blockquote>
 
                 <h2>The Investigation: Debugging the Black Box</h2>
