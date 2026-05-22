@@ -3,7 +3,8 @@ const mobileMenuBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
 mobileMenuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
+    const isHidden = mobileMenu.classList.toggle('hidden');
+    mobileMenuBtn.setAttribute('aria-expanded', !isHidden);
 });
 
 // Smooth scrolling for navigation links
@@ -153,36 +154,56 @@ window.addEventListener('scroll', () => {
 document.addEventListener('DOMContentLoaded', function () {
     const projectCards = document.querySelectorAll('.project-card');
 
+    function toggleCard(card) {
+        const details = card.querySelector('.project-details');
+        const icon = card.querySelector('.icon-toggle');
+        const label = card.querySelector('.label-toggle');
+        const isExpanded = !details.classList.contains('hidden');
+
+        // Close other cards
+        projectCards.forEach(otherCard => {
+            if (otherCard !== card) {
+                otherCard.querySelector('.project-details').classList.add('hidden');
+                otherCard.classList.remove('ring-2', 'ring-accent');
+                otherCard.setAttribute('aria-expanded', 'false');
+                const otherIcon = otherCard.querySelector('.icon-toggle');
+                const otherLabel = otherCard.querySelector('.label-toggle');
+                if (otherIcon) otherIcon.classList.remove('rotate-180');
+                if (otherLabel) otherLabel.textContent = 'Click to expand';
+            }
+        });
+
+        // Toggle current card
+        if (isExpanded) {
+            details.classList.add('hidden');
+            card.classList.remove('ring-2', 'ring-accent');
+            card.setAttribute('aria-expanded', 'false');
+            if (icon) icon.classList.remove('rotate-180');
+            if (label) label.textContent = 'Click to expand';
+        } else {
+            details.classList.remove('hidden');
+            card.classList.add('ring-2', 'ring-accent');
+            card.setAttribute('aria-expanded', 'true');
+            if (icon) icon.classList.add('rotate-180');
+            if (label) label.textContent = 'Click to collapse';
+        }
+    }
+
     projectCards.forEach(card => {
+        // Make cards focusable and add ARIA
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-expanded', 'false');
+
         card.addEventListener('click', function () {
-            const details = this.querySelector('.project-details');
-            const icon = this.querySelector('.icon-toggle');
-            const label = this.querySelector('.label-toggle');
-            const isExpanded = !details.classList.contains('hidden');
+            toggleCard(this);
+        });
 
-            // Close other cards
-            projectCards.forEach(otherCard => {
-                if (otherCard !== this) {
-                    otherCard.querySelector('.project-details').classList.add('hidden');
-                    otherCard.classList.remove('ring-2', 'ring-accent');
-                    const otherIcon = otherCard.querySelector('.icon-toggle');
-                    const otherLabel = otherCard.querySelector('.label-toggle');
-                    if (otherIcon) otherIcon.classList.remove('rotate-180');
-                    if (otherLabel) otherLabel.textContent = 'Click to expand';
-                }
-            });
-
-            // Toggle current card
-            if (isExpanded) {
-                details.classList.add('hidden');
-                this.classList.remove('ring-2', 'ring-accent');
-                if (icon) icon.classList.remove('rotate-180');
-                if (label) label.textContent = 'Click to expand';
-            } else {
-                details.classList.remove('hidden');
-                this.classList.add('ring-2', 'ring-accent');
-                if (icon) icon.classList.add('rotate-180');
-                if (label) label.textContent = 'Click to collapse';
+        // Keyboard accessibility
+        card.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleCard(this);
             }
         });
     });
